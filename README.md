@@ -116,7 +116,7 @@ Puncte X-RAY suplimentare pot fi colectate în joc.
   - Numărul minim de mișcări.
 - **Real-time**: Agenții vor avea un timp limitat pentru a trimite comenzi, iar depășirea acestui timp duce la descalificare.
 
---
+---
 
 # TODO
 - de facut Readme cu setup environment si how to run
