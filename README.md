@@ -1,93 +1,120 @@
-# Proiect MPS
+# 👋 Pagina Pornire
 
+## Link-uri utile:
 
+- **Grup Whatsapp**: [https://chat.whatsapp.com/CL4CmY0FQ7T8xZmJjaRZNw](https://chat.whatsapp.com/CL4CmY0FQ7T8xZmJjaRZNw)
+- **Discord**: https://discord.gg/tXGSw3Wt
+- **Jira**:  https://sciencepc.atlassian.net/wiki/spaces/MPS/overview)[https://sciencepc.atlassian.net/jira/software/c/projects/MPS/issues?jql=project%20%3D%20%22MPS%22%20ORDER%20BY%20created%20DESC 
+- **Gitlab**: [https://gitlab.cs.pub.ro/mps-2024](https://gitlab.cs.pub.ro/mps-2024)
+- **Teams (MPS)**: https://teams.microsoft.com/l/team/19%3AsdzzSFaRBbEaSr6AZxFiKb0p-LqWTY5dtNA_2Ms52f81%40thread.tacv2/conversations?groupId=bd49bfb0-3625-4311-9b96-f1b04cbe8c97&tenantId=2d8cc8ba-8dda-4334-9e5c-fac2092e9bac
 
-## Getting started
+## Resurse:
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- **OCW** https://ocw.cs.pub.ro/courses/mps/proiect
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Limbaj/tehnologie:
 
-## Add your files
+- **Python3**
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Biblioteci:
 
-```
-cd existing_repo
-git remote add origin https://gitlab.cs.pub.ro/mps-2024/joi_8_echipa1/proiect-mps.git
-git branch -M main
-git push -uf origin main
-```
+- **numpy**
 
-## Integrate with your tools
+## Tooluri folosite:
 
-- [ ] [Set up project integrations](https://gitlab.cs.pub.ro/mps-2024/joi_8_echipa1/proiect-mps/-/settings/integrations)
+- **VSCode**
+- **Jira**
+- **Discord** 
+- **Whatsapp** 
 
-## Collaborate with your team
+## Metodologie:
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- **Scrum** 
 
-## Test and Deploy
+## Echipa
 
-Use the built-in continuous integration in GitLab.
+- **Project Manager**: @Maria-Teodora Popescu  
+  - Responsabilă pentru coordonarea generală a echipei și asigurarea unei bune organizări a proiectului.
+  - Monitorizează progresul fiecărei componente, organizează Sprint Planning, Daily Stand-ups, și se asigură că termenele sunt respectate.
+  - Gestionează comunicarea între membri și documentația de proiect.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- **Team Lead (Dev1)**: @Alfred Andrei Pietraru  
+  - Coordonează echipa tehnică și este responsabil pentru dezvoltarea serverului și implementarea AI-ului agentului, asigurând integrarea corectă a tuturor componentelor.
 
-***
+- **Dev2**: @Andreea Budulan  
+  - Dezvoltă generatorul de labirint procedural, implementând logica pentru crearea pereților, căilor și elementelor speciale din labirint.
 
-# Editing this README
+- **Dev3**: @Alexandra-Claudia Girnita  
+  - Se ocupă de dezvoltarea interfeței vizuale (Viewer), sincronizând vizualizarea labirintului și mișcările agenților cu serverul în timp real.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- **Tester 1**: @Delia Rosu  
+  - Se concentrează pe testarea interacțiunii dintre server și agenți, asigurându-se că AI-ul și serverul funcționează corect.
 
-## Suggestions for a good README
+- **Tester 2**: @Amalia Stoian  
+  - Testează labirintul generat și vizualizarea maze-ului în viewer, verificând că mișcările agenților sunt afișate corect și că labirintul respectă regulile impuse.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+---
 
-## Name
-Choose a self-explaining name for your project.
+## Cerința pe scurt - Ce avem de făcut?
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### **Introducere**
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Acest proiect implică dezvoltarea unui joc competitiv în care mai mulți agenți AI navighează prin labirinturi generate programatic. Echipele dezvoltă atât agenții, cât și serverul care conectează acești agenți. Serverul încarcă labirinturile și acționează ca un vizualizator al jocului.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Scopul este de a determina soluția AI cea mai eficientă prin competiție directă între agenții AI. Agentul AI care iese primul din labirint este declarat câștigător, iar serverul monitorizează condițiile de victorie și acordă puncte corespunzătoare.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### **Generatorul**
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- Trebuie să producă o imagine în format 8bpp.
+- Trebuie să poată primi aceeași imagine înapoi pentru reproducere.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Fiecare pixel reprezintă o structură specifică din labirint:
+- **0**: perete
+- **255**: cale
+- **64**: intrare
+- **182**: ieșire
+- Alte valori pentru capcane, portale, plăci speciale.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### **Funcționalități principale**
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- **Vizibilitate**: Fiecare jucător poate vedea o zonă de 5×5 în jurul poziției curente, indicând direcțiile de mișcare (N, E, S, W).
+- **Mișcare pe rânduri**: Fiecare agent trimite o secvență de până la 10 pași către server. Mișcările nereușite reduc secvențele din următoarele ture.
+- **Puncte X-RAY**: Fiecare jucător începe cu 10 puncte X-RAY, care extind vizibilitatea cu n pași (ex. 2 puncte cresc vizibilitatea la 7×7).
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### **Tipuri de plăci speciale**:
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- **Fog tile**: Limitează vizibilitatea la 3×3.
+- **Tower tile**: Oferă o vizibilitate extinsă de 7×7.
+- **Capcane**: Multiple tipuri, care fie reduc numărul de pași, fie anulează mișcări anterioare, împing înainte sau înapoi.
+- **Portale**: Leagă două puncte din labirint, fiecare portal având un id specific.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Puncte X-RAY suplimentare pot fi colectate în joc.
 
-## License
-For open source projects, say how it is licensed.
+---
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### **Serverul**
+
+- Răspunde unei comenzi JSON cu numele comenzii, rezultate de succes/eșec și vizibilitatea în jurul agentului după fiecare mișcare.
+- Poate stoca și retrimite labirinturi salvate sub formă de imagini.
+
+---
+
+### **Viewer-ul**
+
+- **Rezoluție**: 1920×1080, cu 20 pixeli pe fiecare tile.
+- **Moduri de vizualizare**: Vizualizare completă a labirintului sau vizualizare limitată la ce a explorat fiecare agent.
+- **Funcții adiționale**: Scroll, zoom și moduri de vizualizare a drumurilor parcurse și a pașilor planificați de agenți.
+- **Elemente vizuale**: Capcanele vor fi etichetate cu valoarea "n", iar drumul parcurs va fi afișat cu o linie solidă, iar pașii planificați cu o linie punctată.
+
+---
+
+### **Agenți AI**
+
+- Fiecare agent AI poate funcționa în două moduri:
+  - **Real-time**: trimite comenzi și primește rezultate în timp real.
+  - **Await input**: trimite comenzi și așteaptă inputul utilizatorului pentru următoarea comandă.
+- Performanța agenților va fi evaluată în trei moduri:
+  - Timpul minim necesar pentru a rezolva labirintul.
+  - Numărul minim de ture.
+  - Numărul minim de mișcări.
+- **Real-time**: Agenții vor avea un timp limitat pentru a trimite comenzi, iar depășirea acestui timp duce la descalificare.
