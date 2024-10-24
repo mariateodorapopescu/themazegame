@@ -2,10 +2,7 @@
 
 ## Link-uri utile:
 
-- **Grup Whatsapp**: [https://chat.whatsapp.com/CL4CmY0FQ7T8xZmJjaRZNw](https://chat.whatsapp.com/CL4CmY0FQ7T8xZmJjaRZNw)
-- **Discord**: https://discord.gg/tXGSw3Wt
-- **Jira**:  https://sciencepc.atlassian.net/wiki/spaces/MPS/overview)[https://sciencepc.atlassian.net/jira/software/c/projects/MPS/issues?jql=project%20%3D%20%22MPS%22%20ORDER%20BY%20created%20DESC 
-- **Gitlab**: [https://gitlab.cs.pub.ro/mps-2024](https://gitlab.cs.pub.ro/mps-2024)
+- **Gitlab**: [https://gitlab.cs.pub.ro/mps-2024](https://gitlab.cs.pub.ro/mps-2024/joi_8_echipa1/proiect-mps.git)
 - **Teams (MPS)**: https://teams.microsoft.com/l/team/19%3AsdzzSFaRBbEaSr6AZxFiKb0p-LqWTY5dtNA_2Ms52f81%40thread.tacv2/conversations?groupId=bd49bfb0-3625-4311-9b96-f1b04cbe8c97&tenantId=2d8cc8ba-8dda-4334-9e5c-fac2092e9bac
 
 ## Resurse:
