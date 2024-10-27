@@ -116,7 +116,77 @@ Puncte X-RAY suplimentare pot fi colectate în joc.
   - Numărul minim de mișcări.
 - **Real-time**: Agenții vor avea un timp limitat pentru a trimite comenzi, iar depășirea acestui timp duce la descalificare.
 
----
+## Running project
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
 
-# TODO
-- de facut Readme cu setup environment si how to run
+## Documentatie
+clasa CustomThread din fisierul CustomThread.py:
+in mod normal thread-urile in python nu returneaza niciun tip de date in momentul
+in care isi termina executia, cu ajutorul acestei clase, avem thread-uri asemenatoare
+cu cele din C, care returneaza tipuri de date.
+
+in fisierul server/maze.py:
+Se regasesc clasele MazeCell si Maze, Maze este o matrice de celule MazeCell, la inceput
+neconectate intre ele. clasa MazeCell este alcatuita din variabila interna value, care indica
+ce se afla acolo, si poate lua una din valorile din fisierul constants.py, x si y 
+Maze._computeFinalMatrix() -> aici a trebuit sa adaptez putin codul, dar cel mai bine se 
+explica printr-un exemplu: sa zicem ca am urmatorul grid de celule:
+
+1 2 3 
+4 5 6
+7 8 9 
+SE POATE DEPLASA DOAR PE LINII SI COLOANE ! NUUU DIAGONALA
+si parcurgerea din DFS incepe de la celula 1: si merge in felul urmator:
+1 -> 4 -> 5 -> 8 -> 7 (in 7 ajunge si vede ca totul in jurul lui e explorat, se 
+foloseste de coada si se intoarce inapoi pana la prima celula care mai poate fi explorata, 
+adica 9, si gaseste ca poate sa mearga doar inspre 9 si parcurge):
+7 <- 8 -> 9 -> 6 -> 3 -> 2 ( a explorat intreaga matrice, si se goleste coada)
+in situatia asta nu avem niste path-uri stabilite dar nu avem cum sa le reprezentam 
+printr-o matrice in mod clar -> asa ca am creat o matrice de 2 * 3 + 1,
+
+0 0 0 0 0 0 0
+0 1 0 2 0 3 0
+0 0 0 0 0 0 0
+0 4 0 5 0 6 0
+0 0 0 0 0 0 0
+0 7 0 8 0 9 0
+0 0 0 0 0 0 0
+
+acum in functi de cum sunt conectate celule, vom stabili daca exista drum 255 / sau este zid 0
+in parcurgerea dfs de exemplu a fost 1 -> 4, 4 -> 5 deci acele path-uri primesc 255 (initial
+voi seta acolo valoarea de 1, ca in self.N / self.W / self.E si dupa fac operatii pe matrici)
+
+0 0 0 0 0 0 0
+0 1 1 2 1 3 0
+0 1 0 0 0 1 0
+0 4 1 5 0 6 0
+0 0 0 1 0 1 0
+0 7 1 8 1 9 0
+0 0 0 0 0 0 0
+
+dupa se transforma tot ceea ce e mai mare ca zero in 255 
+0  0   0   0   0   0  0
+0 255 255 255 255 255 0
+0 255  0   0   0  255 0
+0 255 255 255  0  255 0
+0  0   0  255  0  255 0
+0 255 255 255 255 255 0
+0  0   0   0   0   0  0
+
+se elimina 0 -urile suplimentare si aceasta este matricea finala 
+Good luck! 
+
+
+clasa DFSGenerator.py:
+creez o matrice de obiecte de tip MatrixCell (in fisierul server/maze.py), iar algoritmul
+trece prin fiecare din aceste celule, pana cand le exploreaza pe toate, modul in care 
+parcurge aceste celule, indica path-urile posibile pe care va putea merge agentul prin
+labirint, cea mai mare problema a fost ca algoritmul se opreste abia in momentul in care 
+fiecare MatrixCell a fost explorat, din cauza aceasta a fost nevoie de niste functii 
+suplimentare pentru a diferentia intre obiectele de tip MatrixCell prin care a trecut si pe 
+cele pe care le-a ignorat in procesul de explorare.
+in clasa din DFS_Generator.py in functia carve_maze.py -> se pleaca de la matricea de 
+celule, neconectate intre ele, si parcurgandu-se DFS, se leaga celule intre ele.          
+>>>>>>> 0aa9f8b (adaugare comentarii si info in README)

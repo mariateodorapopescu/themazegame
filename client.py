@@ -10,6 +10,7 @@ def interpret_fov(fov : bytes, size : int):
     value = value.reshape((2 * size + 1, 2  * size + 1))
     return value
 
+# testam parsarea de argumente, vom sterge treaba asta, 
 parser = argparse.ArgumentParser(description='Short sample app')
 parser.add_argument('--id', action="store", dest='id', default=0)
 args = parser.parse_args()
