@@ -7,6 +7,7 @@ class DFSAgent:
         self.view_range = view_range
         self.path = []  # Path taken by the agent
         self.visited = set()  # Set to track visited cells
+        self.move_history = []  # List to track the movement history
 
     def _get_neighbors(self, x, y, field_of_view):
         neighbors = []
@@ -21,11 +22,21 @@ class DFSAgent:
             neighbors.append((x, y + 1))
         return neighbors
 
+    def _update_and_display_maze(self, field_of_view, current):
+        # Actualizează matricea cu poziția curentă a agentului
+        display_maze = np.copy(field_of_view)  # Facem o copie a matricei
+        display_maze[current] = Constants.AGENT  # Folosește o constantă pentru a marca agentul
+        
+        print("Matricea actualizată:")
+        print(display_maze)  # Afișează matricea
+
     def _dfs(self, current, goal, field_of_view):
         if current in self.visited:
             return False  # Already visited this cell
 
         self.visited.add(current)  # Mark the current cell as visited
+        self._update_and_display_maze(field_of_view, current)  # Update and display the maze
+        self.move_history.append(current) # Append the current cell to the movement history
 
         if current == goal:
             return True  # Found the goal!
@@ -54,13 +65,16 @@ class DFSAgent:
 
         self.path = []  # Reset path for new search
         self.visited = set()  # Reset visited cells
+        self.move_history = []  # Reset movement history
         found = self._dfs(start, goal, field_of_view)
 
         if found:
             # Create a request based on the path found
             directions = self._convert_path_to_directions(start)
+            print("Istoricul mutărilor:", self.move_history)
             return bytes(json.dumps({"input": directions}), 'utf-8')
         else:
+            print("Nu s-a găsit o cale.")
             return bytes(json.dumps({"input": ""}), 'utf-8')  # No path found
 
     def _convert_path_to_directions(self, start):
@@ -78,3 +92,5 @@ class DFSAgent:
             current = next_cell
         directions.reverse()  # Reverse the directions to go from start to goal
         return ''.join(directions)
+    
+    
