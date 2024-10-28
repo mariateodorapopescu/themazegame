@@ -190,3 +190,30 @@ cele pe care le-a ignorat in procesul de explorare.
 in clasa din DFS_Generator.py in functia carve_maze.py -> se pleaca de la matricea de 
 celule, neconectate intre ele, si parcurgandu-se DFS, se leaga celule intre ele.          
 >>>>>>> 0aa9f8b (adaugare comentarii si info in README)
+
+<!-- pentru testare -> testarea functiei get_field_of_view() + sugestii imbunatatire  -->
+<!-- Claudia -> A* -->
+<!-- Andreea -> interfata grafica + terminare labirint -->
+ <!-- Alfred -> comunicarea server client  + agent-->
+ Problema :
+ 5 * 5 view ce inseamna ? 5 elemente vazute in fiecare directie? sau lungimea view-ului
+
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * 0 * * * * *
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * * * * * * * 
+ * * * * * * * * * * *
+
+ sau
+
+ * * * * *
+ * * * * *
+ * * 0 * *
+ * * * * *
+ * * * * *
