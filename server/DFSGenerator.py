@@ -2,7 +2,7 @@ from maze import Maze, MazeCell
 import sys
 import os
 # daca nu includ path-ul asa nu vede clasa Constants
-sys.path.append(os.path.abspath('../')) 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from constants import Constants
 import numpy as np
 

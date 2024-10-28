@@ -1,6 +1,6 @@
 import numpy as np
 import struct
-import cv2
+import cv2 # type: ignore
 
 class MazeCell:
     def __init__(self, x : int, y : int):
