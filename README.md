@@ -115,6 +115,11 @@ opencv-python==4.10.0.84
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
+
+## Rulare agenti si server
+python3 server/server.py
+python3 client.py --id 1 --agent astar
+python3 client.py --id 1 --agent dfs
 ```
 
 ## CustomThread.py:
