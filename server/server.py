@@ -17,6 +17,7 @@ MAX_CLIENTS_NUMBER = 2
 SIZE = (7, 7)
 ORIGIN = (0, 0)
 SEED = 36
+<<<<<<< HEAD
 
 
 def get_fov_as_string(fov : np.array):
@@ -48,6 +49,8 @@ def create_reply_back(chain_of_commands : str, result : np.array, fov_list : lis
                 "view": get_fov_as_string(last_view_of_agent)
             }
     return json.dumps(dictionary)
+=======
+>>>>>>> 7c1e434 (small changes)
 
 # this is the function for communication between agent and server
 def main_communication(my_sock : socket, maze : Maze):

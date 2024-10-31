@@ -74,6 +74,7 @@ class Maze:
         self.layout = np.array(self._computeFinalMatrix(), dtype=np.uint8)
     
     # agentul este in pozitia (x, y), functia returneaza o matrice cu o parte din
+    # agentul este in pozitia (x, y), functia returneaza o matrice cu o parte din
     # labirint, adica field_size elemente in jurul lui
     def get_field_of_view(self, x : int, y : int, field_size):
         height, width = self.layout.shape
