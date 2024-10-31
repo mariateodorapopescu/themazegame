@@ -197,7 +197,8 @@ Adaugare taskuri noi (pentru mai multe detalii, vezi Jira)
 - Andreea -> interfata grafica + terminare labirint
 - Alfred -> comunicarea server client  + agent
 
-Intrebare 1
+> Intrebare 1
+
 5 * 5 view ce inseamna ? 5 elemente vazute in fiecare directie? sau lungimea view-ului - solved la lab4
 ```
  * * * * * * * * * * * 
