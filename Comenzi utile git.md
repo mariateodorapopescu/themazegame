@@ -97,7 +97,7 @@ Pentru a rezolva problema, trebuie să aduci modificările recente din `main` de
 
 ---
 
-## 2. cum fac sa dau push sau commit doar la anumite lucruri pe branch-ul meu/sau pe main?
+## 2. cum fac sa dau push sau commit doar la anumite **commit-uri** pe branch-ul meu/sau pe main?
 - mai intai vezi Issue 1 de mai sus, caci, in mare parte, vei avea o eroare care iti zice ca trebuie sa ai la zi cu main-ul
 - Pentru a face push și merge doar la anumite modificări și nu la toate, poți utiliza diverse metode Git precum **cherry-picking**, **staging selectiv** și **interactive rebase**.
 - Aceste tehnici îți permit să selectezi exact ce modificări să trimiți sau să îmbini în branch-ul de destinație.
