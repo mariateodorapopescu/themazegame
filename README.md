@@ -245,4 +245,5 @@ sau
 > Intrebare 2
 - Readme si wiki in engleza sau in romana?
 - sunt necesare graficele din lab3 si documentele din lab4?
+
 *Raspuns:* 1. in orice limba, dar sa fie consistent; 2. documente per-se - nu. la grafice, doar daca va ajuta
