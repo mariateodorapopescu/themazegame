@@ -14,7 +14,6 @@ MAX_CLIENTS_NUMBER = 2
 SIZE = (7, 7)
 ORIGIN = (0, 0)
 SEED = 36
-exit(1)
 
 # this is the function for communication between agent and server
 def main_communication(my_sock : socket, maze : Maze, idx : int):
