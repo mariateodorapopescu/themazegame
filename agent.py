@@ -6,7 +6,7 @@ import json
 # doar pentru a testa comunicarea client - server
 # fiecare agent va implementa cate un algoritm diferit, poate va trebui de schimbat 
 # numele clasei
-class Agent:
+class AgentRandom:
     def __init__(self, view_range = 5):
         self.RC_points = 10
         self.view_range = view_range
