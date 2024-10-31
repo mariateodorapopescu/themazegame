@@ -17,7 +17,7 @@
 
 - **numpy**
 
-# Tooluri folosite:
+# Instrumente folosite:
 
 - **VSCode**
 - **Jira**
@@ -103,14 +103,14 @@ Fiecare pixel reprezintă o structură specifică din labirint:
 
 # Documentatie
 
-## Requirements
+## Cerinte
 ```
 getch==1.0
 numpy==2.1.2
 opencv-python==4.10.0.84
 ```
 
-## Running project
+## Rulare
 ```
 python3 -m venv venv
 source venv/bin/activate
@@ -189,17 +189,17 @@ celule, neconectate intre ele, si parcurgandu-se DFS, se leaga celule intre ele.
 
 ---
 
-## Issues
-
->>>>>>> 0aa9f8b (adaugare comentarii si info in README)
+## Probleme
+28-31.10.2024
+> Adaugare taskuri noi (pentru mai multe detalii, vezi Jira)
 - pentru testare -> testarea functiei get_field_of_view() + sugestii imbunatatire 
 - Claudia -> A*
 - Andreea -> interfata grafica + terminare labirint
 - Alfred -> comunicarea server client  + agent
 
-## Problema :
- 5 * 5 view ce inseamna ? 5 elemente vazute in fiecare directie? sau lungimea view-ului
-```
+> Intrebare 1
+>> 5 * 5 view ce inseamna ? 5 elemente vazute in fiecare directie? sau lungimea view-ului - solved la lab4
+>> ```
  * * * * * * * * * * * 
  * * * * * * * * * * * 
  * * * * * * * * * * * 
@@ -211,12 +211,37 @@ celule, neconectate intre ele, si parcurgandu-se DFS, se leaga celule intre ele.
  * * * * * * * * * * * 
  * * * * * * * * * * * 
  * * * * * * * * * * *
-```
- sau
-```
+>> ```
+ >> sau
+>> ```
  * * * * *
  * * * * *
  * * 0 * *
  * * * * *
  * * * * *
- ```
+ >> ```
+
+>> *Raspuns:* a doua varianta, care poate creste la 7x7 sau scadea la 3x3
+
+>> 7x7:
+ >> ```
+ * * * * * * *
+ * * * * * * *
+ * * * * * * *
+ * * * 0 * * *
+ * * * * * * *
+ * * * * * * *
+ * * * * * * *
+ >>```
+
+>> 3x3:
+>> ```
+ * * * 
+ * 0 * 
+ * * * 
+ >> ```
+
+> Intrebare 2
+- Readme si wiki in engleza sau in romana?
+- sunt necesare graficele din lab3 si documentele din lab4?
+>> *Raspuns:* 1. in orice limba, dar sa fie consistent; 2. documente per-se - nu. la grafice, doar daca va ajuta
