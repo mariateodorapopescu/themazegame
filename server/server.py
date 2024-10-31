@@ -1,10 +1,10 @@
-
 import numpy as np
 import socket
 from CustomThread import CustomThread
 from DFSGenerator import DFSGenerator
 import sys
 import os
+
 sys.path.append(os.path.abspath('../'))
 from constants import Constants
 from maze import Maze
@@ -20,15 +20,13 @@ def main_communication(my_sock : socket, maze : Maze, idx : int):
     fov = maze.get_field_of_view(ORIGIN[0], ORIGIN[1], 3)
     fov = bytes(fov.flatten())
     my_sock.send(fov) #need to convert to bytes so i can send it to socket
-    while(True):
+    while True:
         try:
-            output =  my_sock.recv(256)
+            output = my_sock.recv(256)
         except socket.timeout as err:
             return False
-        if (output == b''):
-            # this usually should not happen, the server is the one cutting the agent out
-            # left it for debugging purposes
-            print("socket was closed by client server still up")
+        if output == b'':
+            print("Socket was closed by client server still up")
             return False
         print(output)
     return True
@@ -59,9 +57,8 @@ while True:
     if (idx == MAX_CLIENTS_NUMBER):
         break
 
-# we are waiting for the thread output to tell us if the agent got succesfully out of the maze
-for idx in range(len(thread_list)):
-    thread : CustomThread = thread_list[idx]
+# Wait for threads to finish and get results
+for thread in thread_list:
     result = thread.join()
     print(result)
 s.close()
