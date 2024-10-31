@@ -103,6 +103,11 @@ Fiecare pixel reprezintă o structură specifică din labirint:
 
 # Documentatie
 
+## Requirements
+getch==1.0
+numpy==2.1.2
+opencv-python==4.10.0.84
+
 ## Running project
 python3 -m venv venv
 source venv/bin/activate
