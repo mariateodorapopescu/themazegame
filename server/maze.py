@@ -43,7 +43,7 @@ class Maze:
             for j in range(width):
                 row.append(MazeCell(i, j))
             self.matrix.append(row)
-        self.layout = ""
+        self.layout = np.zeros(shape=(2, 1), dtype=np.uint8)
 
     def getCell(self, x : int, y : int):
         return self.matrix[x][y]
@@ -71,7 +71,7 @@ class Maze:
         print(self._computeFinalMatrix())
 
     def save_layout_maze(self):
-        self.layout = self._computeFinalMatrix()
+        self.layout = np.array(self._computeFinalMatrix(), dtype=np.uint8)
     
     # agentul este in pozitia (x, y), functia returneaza o matrice cu o parte din
     # labirint, adica field_size elemente in jurul lui
@@ -87,6 +87,6 @@ class Maze:
                     output[i][j] = self.layout[x - field_size + i][y - field_size + j]
         return output
 
-
+    
 
 
