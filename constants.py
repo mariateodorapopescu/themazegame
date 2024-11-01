@@ -1,6 +1,6 @@
 import socket
 class Constants:
-    INITIAL_ESTIMATED_SIZE = 51
+    INITIAL_ESTIMATED_SIZE = 21
     AGENT = 69
     ENCODING = "utf-8"
     INITIAL_VIEW_RANGE = 3
