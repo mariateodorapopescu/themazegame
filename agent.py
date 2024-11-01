@@ -12,47 +12,44 @@ class AgentRandom:
         self.view_range = view_range
         self.movements = 10 # cat de multe comenzi are voie sa dea de o data  
         self.last_traveling_plan : list[str] = []
-        self.map : np.array = []
+        self.local_map : np.array = []
         
-        self.x = int(Constants.INITIAL_ESTIMATED_SIZE / 2)
-        self.y = int(Constants.INITIAL_ESTIMATED_SIZE / 2)  
+        self.x = int(Constants.INITIAL_ESTIMATED_SIZE / 2) + 1
+        self.y = int(Constants.INITIAL_ESTIMATED_SIZE / 2) + 1
 
     def create_initial_map(self, fov):
         height, width = fov.shape
-        self.map = np.zeros(shape=(Constants.INITIAL_ESTIMATED_SIZE,
+        self.local_map = np.zeros(shape=(Constants.INITIAL_ESTIMATED_SIZE,
                              Constants.INITIAL_ESTIMATED_SIZE))
         for i in range(height):
             for j in range(width):
-                self.map[self.x - height + i][self.y - width + j] = fov[i][j]
+                self.local_map[self.x - int(height / 2) + i][self.y - int(width / 2) + j] = fov[i][j]
+        
         
 
     def _chooseDirection(self):
         current = []
         x = self.x
         y = self.y
-        if (x < 2 * self.view_range):
-            if (map[x + 1][y] != Constants.WALL):
-                current.append("S")
-        if (x > 0):
-            if (map[x - 1][y] != Constants.WALL):
-                current.append("N")
-        if (y > 0):
-            if (map[x][y - 1] != Constants.WALL):
-                current.append("W")
-        if (y < 2 * self.view_range):
-            if (map[x][y + 1] != Constants.WALL):
-                current.append("E")
+        if (self.local_map[x + 1][y] != Constants.WALL):
+            current.append("S")
+        if (self.local_map[x - 1][y] != Constants.WALL):
+            current.append("N")
+        if (self.local_map[x][y - 1] != Constants.WALL):
+            current.append("W")
+        if (self.local_map[x][y + 1] != Constants.WALL):
+            current.append("E")
         return np.random.choice(current)
     
-    def _modifyCoordinates(self, x : int, y : int, letter):
+    def _modifyCoordinates(self, letter):
         if (letter == "S"):
-            return x + 1, y
+            return self.x + 1, self.y
         if (letter == "N"):
-            return x - 1, y
+            return self.x - 1, self.y
         if (letter == "W"):
-            return x, y- 1
+            return self.x, self.y - 1
         if (letter == "E"):
-            return x, y + 1
+            return self.x, self.y + 1
 
 
     def _createTravelingPlan(self, field_of_view: np.array):

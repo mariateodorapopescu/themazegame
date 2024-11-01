@@ -96,7 +96,7 @@ def main_communication(my_sock : socket, maze : Maze):
             print("Socket was closed by client server still up")
             return False
         print(output)
-        getch.getch()
+        # getch.getch()
     return True
 
 # ORIGIN is the place where the agent will initially start searching
