@@ -11,6 +11,9 @@ class AgentRandom:
         self.RC_points = 10
         self.view_range = view_range
         self.movements = 10 # cat de multe comenzi are voie sa dea de o data  
+        self.last_traveling_plan : list[str] = []
+        self.reconstructed_map : np.array = np.zeros(shape=(Constants.INITIAL_ESTIMATED_SIZE,
+                             Constants.INITIAL_ESTIMATED_SIZE))
 
     def _chooseDirection(self, x : int, y : int, field_of_view : np.array):
         current = []
@@ -50,5 +53,20 @@ class AgentRandom:
     
     # trimite request la server respectand formatul specificat in enunt
     def create_request(self, field_of_view): 
-        out = {"input": self._createTravelingPlan(field_of_view)} 
+        self.last_traveling_plan = self._createTravelingPlan(field_of_view)
+        out = {"input": self.last_traveling_plan} 
         return bytes(json.dumps(out), Constants.ENCODING)
+    
+    def interpret_fov(self, fov : bytes):
+        fov = fov.decode(Constants.ENCODING)
+        # Replace semicolons and reformat the string
+        fov = fov.replace(';', '], [')
+        fov = f"np.array([{fov}])"
+        return np.array(eval(fov), dtype=np.uint8)
+    
+    def interpret_response(self, response):
+        print(len(self.last_traveling_plan))
+        for idx, command in enumerate(self.last_traveling_plan):
+            result = response["command" + str(idx + 1)]
+            print(idx, result)
+            print()
