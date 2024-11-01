@@ -14,7 +14,7 @@ from maze import Maze
 
 TIMEOUT_REQUEST = 1.0
 MAX_CLIENTS_NUMBER = 2
-SIZE = (7, 7)
+SIZE = (10, 10)
 ORIGIN = (0, 0)
 SEED = 36
 
@@ -99,12 +99,15 @@ def main_communication(my_sock : socket, maze : Maze):
     return True
 
 # ORIGIN is the place where the agent will initially start searching
-generator : DFSGenerator = DFSGenerator(SIZE, SEED, ORIGIN) 
+maze = Maze(SIZE[0], SIZE[1], SEED)
+generator : DFSGenerator = DFSGenerator(maze, SIZE, ORIGIN)
+#generator : DFSGenerator = DFSGenerator(SIZE, SEED, ORIGIN) 
 maze = generator.carve_maze()
-maze.write_maze_to_file("../da.png")
-maze.save_layout_maze()
-# maze.write_to_output()
-# print()
+maze.generate_start_end_points()
+maze.write_maze_to_file("../maze.png")
+#maze.save_layout_maze()
+maze.write_to_output()
+print()
 
 # server is waiting for connections
 s = socket.create_server(Constants.ADDR, family=socket.AF_INET, reuse_port=True)
