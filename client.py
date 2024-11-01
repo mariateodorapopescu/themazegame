@@ -29,6 +29,7 @@ else:
 # Primim câmpul de vedere de la server
 first_message_received = sock.recv(Constants.MAX_SERVER_RESPONSE_SIZE)
 field_of_view  = agent.interpret_fov(first_message_received)
+# agent.create_initial_map(field_of_view)
 
 # Client code snippet
 while True:

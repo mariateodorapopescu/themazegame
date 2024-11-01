@@ -35,7 +35,6 @@ def create_reply_back(chain_of_commands : str, result : np.array, fov_list : lis
     dictionary = {}
     last_view_of_agent = fov_list[0]
     for i, status in enumerate(result):
-        print(i)
         if (status == SUCCESS):
             dictionary["command" + str(i + 1)] = {
                 "name": chain_of_commands[i],
