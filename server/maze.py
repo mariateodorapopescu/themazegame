@@ -31,22 +31,6 @@ class MazeCell:
                 self.S = 1
                 other.N = 1
                 return self, other
-            # aparent nu mai e nevoie de functia asta nu mai stiu de ce am halucinat o 
-    # def cellShouldBeConnected(self, other : "MazeCell"):
-    #     if (abs(self.x - other.x) > 2) | (abs(self.y - other.y) > 2):
-    #         return False
-    #     if (abs(self.x - other.x) == 1) & (abs(self.y - other.y) == 1):
-    #         return False
-    #     if self.x == other.x:
-    #         if (self.y + 1 == other.y): 
-    #             return self.E == other.W
-    #         if (self.y == other.y + 1):
-    #             return self.W == other.E
-    #     if (self.y == other.y):
-    #         if (self.x + 1 == other.x):
-    #             return self.S == other.N
-    #         if (self.x == other.x + 1):
-    #             return self.N == other.S
 
 class Maze:
     def __init__(self, width: int, height: int, seed: int):
@@ -59,7 +43,7 @@ class Maze:
             for j in range(width):
                 row.append(MazeCell(i, j))
             self.matrix.append(row)
-        self.layout = ""
+        self.layout = np.zeros(shape=(2, 1), dtype=np.uint8)
 
     def getCell(self, x : int, y : int):
         return self.matrix[x][y]
@@ -87,9 +71,9 @@ class Maze:
         print(self._computeFinalMatrix())
 
     def save_layout_maze(self):
-        self.layout = self._computeFinalMatrix()
+        self.layout = np.array(self._computeFinalMatrix(), dtype=np.uint8)
     
-    # agentul este in pozitia (x, y), functia returneaza o matrice cu o parte din 
+    # agentul este in pozitia (x, y), functia returneaza o matrice cu o parte din
     # labirint, adica field_size elemente in jurul lui
     def get_field_of_view(self, x : int, y : int, field_size):
         height, width = self.layout.shape
@@ -103,6 +87,6 @@ class Maze:
                     output[i][j] = self.layout[x - field_size + i][y - field_size + j]
         return output
 
-
+    
 
 

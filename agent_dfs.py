@@ -8,6 +8,7 @@ class DFSAgent:
         self.path = []  # Path taken by the agent
         self.visited = set()  # Set to track visited cells
         self.move_history = []  # List to track the movement history
+        self.last_traveling_plan : list[str] = [] 
 
     def _get_neighbors(self, x, y, field_of_view):
         neighbors = []
@@ -67,15 +68,29 @@ class DFSAgent:
         self.visited = set()  # Reset visited cells
         self.move_history = []  # Reset movement history
         found = self._dfs(start, goal, field_of_view)
-
+        print(found)
         if found:
             # Create a request based on the path found
-            directions = self._convert_path_to_directions(start)
+            self.last_traveling_plan = self._convert_path_to_directions(start)
             print("Istoricul mutărilor:", self.move_history)
-            return bytes(json.dumps({"input": directions}), 'utf-8')
+            return bytes(json.dumps({"input": self.last_traveling_plan}), 'utf-8')
         else:
             print("Nu s-a găsit o cale.")
             return bytes(json.dumps({"input": ""}), 'utf-8')  # No path found
+        
+    def interpret_fov(self, fov : bytes):
+        fov = fov.decode(Constants.ENCODING)
+        # Replace semicolons and reformat the string
+        fov = fov.replace(';', '], [')
+        fov = f"np.array([{fov}])"
+        return np.array(eval(fov), dtype=np.uint8)
+    
+    def interpret_response(self, response):
+        print(len(self.last_traveling_plan))
+        for idx, command in enumerate(self.last_traveling_plan):
+            result = response["command" + str(idx + 1)]
+            print(idx, result)
+            print()
 
     def _convert_path_to_directions(self, start):
         directions = []

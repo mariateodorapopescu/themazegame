@@ -252,3 +252,7 @@ sau
 - sunt necesare graficele din lab3 si documentele din lab4?
 
 *Raspuns:* 1. in orice limba, dar sa fie consistent; 2. documente per-se - nu. la grafice, doar daca va ajuta
+
+> Intrebare 3
+- Agentul are voie sa memoreze zonele prin care a trecut, reconstruind astfel labirintul?
+- Avem voie sa trimitem agentului dimensiunea totala a labirintului, pt alocari de memorie?
