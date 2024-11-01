@@ -2,6 +2,8 @@ import numpy as np
 import socket
 from CustomThread import CustomThread
 from DFSGenerator import DFSGenerator
+from agent_astar import AStarAgent
+
 import sys
 import os
 import json
@@ -10,6 +12,7 @@ import getch
 sys.path.append(os.path.abspath('../'))
 from constants import Constants
 from maze import Maze
+from viewer import Viewer
 
 
 TIMEOUT_REQUEST = 1.0
@@ -98,6 +101,9 @@ def main_communication(my_sock : socket, maze : Maze):
         # getch.getch()
     return True
 
+
+# MAZE GENERATION
+
 # ORIGIN is the place where the agent will initially start searching
 maze = Maze(SIZE[0], SIZE[1], SEED)
 generator : DFSGenerator = DFSGenerator(maze, SIZE, ORIGIN)
@@ -108,6 +114,14 @@ maze.write_maze_to_file("../maze.png")
 #maze.save_layout_maze()
 maze.write_to_output()
 print()
+
+# AGENTS
+#agent = AStarAgent(view_range=5)
+
+# VIEWER
+viewer = Viewer(maze)
+#viewer = Viewer(maze, "../maze.png")
+viewer.run()
 
 # server is waiting for connections
 s = socket.create_server(Constants.ADDR, family=socket.AF_INET, reuse_port=True)
