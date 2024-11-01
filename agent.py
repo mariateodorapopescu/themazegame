@@ -17,15 +17,13 @@ class AgentRandom:
         self.x = int(Constants.INITIAL_ESTIMATED_SIZE / 2) + 1
         self.y = int(Constants.INITIAL_ESTIMATED_SIZE / 2) + 1
 
-    def create_initial_map(self, fov):
+    def create_initial_map(self, fov : np.array):
         height, width = fov.shape
         self.local_map = np.zeros(shape=(Constants.INITIAL_ESTIMATED_SIZE,
                              Constants.INITIAL_ESTIMATED_SIZE))
         for i in range(height):
             for j in range(width):
                 self.local_map[self.x - int(height / 2) + i][self.y - int(width / 2) + j] = fov[i][j]
-        
-        
 
     def _chooseDirection(self):
         current = []
@@ -52,7 +50,7 @@ class AgentRandom:
             return self.x, self.y + 1
 
 
-    def _createTravelingPlan(self, field_of_view: np.array):
+    def _createTravelingPlan(self):
         directions = []
         for i in range(self.movements):
             direction = self._chooseDirection()
@@ -61,8 +59,8 @@ class AgentRandom:
         return ''.join(directions)
     
     # trimite request la server respectand formatul specificat in enunt
-    def create_request(self, field_of_view): 
-        self.last_traveling_plan = self._createTravelingPlan(field_of_view)
+    def create_request(self): 
+        self.last_traveling_plan = self._createTravelingPlan()
         out = {"input": self.last_traveling_plan} 
         return bytes(json.dumps(out), Constants.ENCODING)
     
@@ -72,11 +70,42 @@ class AgentRandom:
         fov = fov.replace(';', '], [')
         fov = f"np.array([{fov}])"
         return np.array(eval(fov), dtype=np.uint8)
+
+    def _adapt_map_in_north(self, fov : np.array):
+        height, width = fov.shape
+        for i in range(width):
+            self.local_map[self.x - int(width / 2) - 1][self.y - int(width / 2) + i] = fov[0][i]
+    
+    def _adapt_map_in_south(self, fov : np.array):
+        height, width = fov.shape
+        for i in range(width):
+            self.local_map[self.x + int(width / 2) + 1][self.y - int(width / 2) + i] = fov[height - 1][i]
+    
+    def _adapt_map_in_west(self, fov : np.array):
+        height, width = fov.shape
+        for i in range(height):
+            self.local_map[self.x - int(height / 2) + i][self.y - int(width / 2) - 1] = fov[i][0]
+
+    def _adapt_map_in_east(self, fov : np.array):
+        height, width = fov.shape
+        for i in range(height):
+            self.local_map[self.x - int(height / 2) + i][self.y + int(width / 2) + 1] = fov[i][width - 1]
     
     
+    def _interpret_command_reply(self, conmmand_result):
+        if(int(conmmand_result["successful"]) == Constants.SUCCESS):
+            command_type = conmmand_result["name"]
+            fov = self.interpret_fov(bytes(conmmand_result["view"], Constants.ENCODING))
+            if (command_type == "N"):
+                self._adapt_map_in_north(fov)
+            if (command_type == "S"):
+                self._adapt_map_in_south(fov)
+            if (command_type == "W"):
+                self._adapt_map_in_west(fov)
+            if (command_type == "E"):
+                self._adapt_map_in_east(fov)
+
     def interpret_response(self, response):
-        print(len(self.last_traveling_plan))
-        for idx, command in enumerate(self.last_traveling_plan):
-            result = response["command" + str(idx + 1)]
-            print(idx, result)
-            print()
+        for idx, _ in enumerate(self.last_traveling_plan):
+            command_result = response["command" + str(idx + 1)]
+            self._interpret_command_reply(command_result)

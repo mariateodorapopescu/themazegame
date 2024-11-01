@@ -1,5 +1,7 @@
 import socket
 class Constants:
+    FAIL = 0
+    SUCCESS = 1
     INITIAL_ESTIMATED_SIZE = 21
     AGENT = 69
     ENCODING = "utf-8"

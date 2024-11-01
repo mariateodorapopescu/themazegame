@@ -32,8 +32,8 @@ field_of_view  = agent.interpret_fov(first_message_received)
 agent.create_initial_map(field_of_view)
 
 # Client code snippet
-while True:
-    request = agent.create_request(field_of_view)
+for i in range(100):
+    request = agent.create_request()
     sock.send(request)
     # Primim actualizările de la server
     try:
@@ -45,6 +45,6 @@ while True:
     except Exception as e:
         print(f"Eroare la primirea datelor: {e}")
         break
-
+print(agent.local_map)
 # Închidem conexiunea la final
 sock.close()
