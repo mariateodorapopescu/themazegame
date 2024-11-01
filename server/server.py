@@ -11,8 +11,7 @@ sys.path.append(os.path.abspath('../'))
 from constants import Constants
 from maze import Maze
 
-FAIL = 0
-SUCCESS = 1
+
 TIMEOUT_REQUEST = 1.0
 MAX_CLIENTS_NUMBER = 2
 SIZE = (7, 7)
@@ -35,17 +34,17 @@ def create_reply_back(chain_of_commands : str, result : np.array, fov_list : lis
     dictionary = {}
     last_view_of_agent = fov_list[0]
     for i, status in enumerate(result):
-        if (status == SUCCESS):
+        if (status == Constants.SUCCESS):
             dictionary["command" + str(i + 1)] = {
                 "name": chain_of_commands[i],
-                "successful": str(SUCCESS),
+                "successful": str(Constants.SUCCESS),
                 "view": get_fov_as_string(fov_list[i])
             }
             last_view_of_agent = fov_list[i]
-        if (status == FAIL):
+        if (status == Constants.FAIL):
             dictionary["command" + str(i + 1)] = {
                 "name": chain_of_commands[i],
-                "successful": str(FAIL),
+                "successful": str(Constants.FAIL),
                 "view": get_fov_as_string(last_view_of_agent)
             }
     return json.dumps(dictionary)
@@ -85,7 +84,7 @@ def main_communication(my_sock : socket, maze : Maze):
                     if (agent_y == width - 1):
                         break
                     agent_y = agent_y + 1
-                results[idx] = SUCCESS
+                results[idx] = Constants.SUCCESS
                 fov_list.append(maze.get_field_of_view(agent_x, agent_y, view_range))
             dictionary = create_reply_back(chain_of_commands, results, fov_list)
             my_sock.send(bytes(dictionary, Constants.ENCODING))
