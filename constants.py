@@ -1,9 +1,10 @@
 import socket
 class Constants:
+    ENCODING = "utf-8"
     INITIAL_VIEW_RANGE = 3
     ADDR = ('127.0.0.1', 8080)
     MAX_COLOR_VALUE = 256
-    MAX_SERVER_RESPONSE_SIZE = 4096
+    MAX_SERVER_RESPONSE_SIZE = 4096 * 2
     
     WALL = 0
     PATH = 255

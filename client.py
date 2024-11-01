@@ -5,12 +5,15 @@ from agent_astar import AStarAgent
 from agent_dfs import DFSAgent
 import numpy as np
 import struct
+import json
 from constants import Constants
 
 def interpret_fov(fov : bytes, size : int):
-    fov = fov.decode("utf-8")
-    print(fov)
-    return ""
+    fov = fov.decode(Constants.ENCODING)
+    # Replace semicolons and reformat the string
+    fov = fov.replace(';', '], [')
+    fov = f"np.array([{fov}])"
+    return np.array(eval(fov), dtype=np.uint8)
 
 # Testăm parsarea de argumente
 parser = argparse.ArgumentParser(description='Client pentru agent')
@@ -32,25 +35,20 @@ else:
 
 # Primim câmpul de vedere de la server
 field_of_view = sock.recv(Constants.MAX_SERVER_RESPONSE_SIZE)
-field_of_view = interpret_fov(field_of_view, agent.view_range)
-print("Câmpul de vedere primit:")
-print(field_of_view)
-exit(1)
+field_of_view  = interpret_fov(field_of_view, agent.view_range)
 
 # Client code snippet
 while True:
     request = agent.create_request(field_of_view)
     sock.send(request)
-
     # Primim actualizările de la server
     try:
-        field_of_view = sock.recv(Constants.MAX_SERVER_RESPONSE_SIZE)
-        if not field_of_view:  # Verificăm dacă conexiunea este închisă
+        response = sock.recv(Constants.MAX_SERVER_RESPONSE_SIZE)
+        if not response:  # Verificăm dacă conexiunea este închisă
             print("Conexiunea cu serverul a fost închisă.")
             break
-        field_of_view = interpret_fov(field_of_view, agent.view_range)
-        print("Câmpul de vedere actualizat:")
-        print(field_of_view)
+        response = json.loads(response)
+        # print(response)
     except Exception as e:
         print(f"Eroare la primirea datelor: {e}")
         break

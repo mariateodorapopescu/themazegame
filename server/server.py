@@ -5,6 +5,7 @@ from DFSGenerator import DFSGenerator
 import sys
 import os
 import json
+import getch
 
 sys.path.append(os.path.abspath('../'))
 from constants import Constants
@@ -47,7 +48,7 @@ def create_reply_back(chain_of_commands : str, result : np.array, fov_list : lis
                 "successful": str(FAIL),
                 "view": get_fov_as_string(last_view_of_agent)
             }
-    return dictionary
+    return json.dumps(dictionary)
 
 # this is the function for communication between agent and server
 def main_communication(my_sock : socket, maze : Maze):
@@ -56,16 +57,16 @@ def main_communication(my_sock : socket, maze : Maze):
     view_range = Constants.INITIAL_VIEW_RANGE
     fov = maze.get_field_of_view(agent_x, agent_y, view_range)
     #need to convert to bytes so i can send it to socket
-    my_sock.send(bytes(get_fov_as_string(fov), encoding="utf-8")) 
+    my_sock.send(bytes(get_fov_as_string(fov), encoding=Constants.ENCODING)) 
 
     while True:
         try:
-            output = my_sock.recv(256).decode("utf-8")
+            output = my_sock.recv(256).decode(Constants.ENCODING)
             request_object = json.loads(output)
-
+           
             chain_of_commands : str = request_object["input"]
             results = np.zeros(shape=(len(chain_of_commands),))
-            fov_list = []
+            fov_list = [maze.get_field_of_view(agent_x, agent_y, view_range)]
 
             for idx, letter in enumerate(chain_of_commands):
                 if (letter == "N"):
@@ -86,9 +87,8 @@ def main_communication(my_sock : socket, maze : Maze):
                     agent_y = agent_y + 1
                 results[idx] = SUCCESS
                 fov_list.append(maze.get_field_of_view(agent_x, agent_y, view_range))
-
             dictionary = create_reply_back(chain_of_commands, results, fov_list)
-            my_sock.send(bytes(dictionary.flatten()))
+            my_sock.send(bytes(dictionary, Constants.ENCODING))
                 
         except socket.timeout as err:
             return False
@@ -96,6 +96,7 @@ def main_communication(my_sock : socket, maze : Maze):
             print("Socket was closed by client server still up")
             return False
         print(output)
+        getch.getch()
     return True
 
 # ORIGIN is the place where the agent will initially start searching

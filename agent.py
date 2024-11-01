@@ -51,4 +51,4 @@ class AgentRandom:
     # trimite request la server respectand formatul specificat in enunt
     def create_request(self, field_of_view): 
         out = {"input": self._createTravelingPlan(field_of_view)} 
-        return bytes(json.dumps(out), 'utf-8')
+        return bytes(json.dumps(out), Constants.ENCODING)
