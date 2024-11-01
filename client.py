@@ -8,13 +8,6 @@ import struct
 import json
 from constants import Constants
 
-def interpret_fov(fov : bytes, size : int):
-    fov = fov.decode(Constants.ENCODING)
-    # Replace semicolons and reformat the string
-    fov = fov.replace(';', '], [')
-    fov = f"np.array([{fov}])"
-    return np.array(eval(fov), dtype=np.uint8)
-
 # Testăm parsarea de argumente
 parser = argparse.ArgumentParser(description='Client pentru agent')
 parser.add_argument('--agent', choices=['astar', 'dfs', 'random'], default='astar', help='Tipul agentului de utilizat')
@@ -34,8 +27,8 @@ else:
     agent = DFSAgent(view_range=3)  # Agent DFS
 
 # Primim câmpul de vedere de la server
-field_of_view = sock.recv(Constants.MAX_SERVER_RESPONSE_SIZE)
-field_of_view  = interpret_fov(field_of_view, agent.view_range)
+first_message_received = sock.recv(Constants.MAX_SERVER_RESPONSE_SIZE)
+field_of_view  = agent.interpret_fov(first_message_received)
 
 # Client code snippet
 while True:
@@ -47,8 +40,7 @@ while True:
         if not response:  # Verificăm dacă conexiunea este închisă
             print("Conexiunea cu serverul a fost închisă.")
             break
-        response = json.loads(response)
-        # print(response)
+        agent.interpret_response(json.loads(response))
     except Exception as e:
         print(f"Eroare la primirea datelor: {e}")
         break
