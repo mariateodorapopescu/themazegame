@@ -10,10 +10,10 @@ import numpy as np
 # labirintul este generat prin intermediul unei parcurgeri DFS a intregii matrici de celule
 # size : tuple -> size = (x, y)  x -> height si y -> width
 class DFSGenerator:
-    def __init__(self, size : tuple, seed : int, origin : tuple):
-        self.maze = Maze(width=size[0], height=size[1], seed=seed)
-        self.x = origin[0]
-        self.y = origin[1]
+    def __init__(self, maze : Maze, size : tuple, coord : tuple, ):
+        self.maze = maze
+        self.x = coord[0]
+        self.y = coord[1]
         # vor fi stocate aici celule prin care a trecut, dar nu le-a explorat complet 
         self.queue = []
         # ce noduri au fost vizitate, nu are sens sa trecem prin ele de 2 ori
@@ -70,5 +70,3 @@ class DFSGenerator:
                 self.queue.pop()
         return self.maze
     
-
-
