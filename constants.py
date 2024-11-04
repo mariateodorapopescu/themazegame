@@ -1,4 +1,5 @@
-import socket
+# Description: This file contains all the constants used in the game.
+
 class Constants:
     FAIL = 0
     SUCCESS = 1
