@@ -45,16 +45,6 @@ PROIECT-MPS/
 ├── da.png                             # Imagini sau resurse media pentru proiect
 ├── README.md                          # Documentația proiectului
 ├── requirements.txt                   # Pachetele și dependențele necesare proiectului
-├── utils_md/                          # Director ce contine o organizare a anumitor documente ale proiectului
-    ├── coding_style.md                # reguli de coding style
-    ├── comenzi_git.md                 # comenzi utile de git de care am avut nevoie
-    ├── config_repo.md                 # ibidem
-    ├── linkuri_utile.md               # ca in titlu
-    ├── structura.md                   # ibidem
-├── wiki/                              # fisiere ce se gasesc in documentatia de pe git
-    ├── meet*.md                       # meeting minutes
-    ├── backlog*.md                    # spring backlog 
-    ├── issues<data>.md                # probleme gasite/semnalate pana la un anumit meet
 ```
 
 ---
@@ -77,10 +67,6 @@ Acest director conține fișierele și modulele interne ale `pip`, utilizate pen
 - **`_internal/`**: Conține submodulele interne ale `pip`, utilizate pentru funcționalități precum operațiuni de rețea, distribuții și modele.
 
 - **`_vendor/`**: Depozit pentru pachete de terță parte utilizate de `pip`.
-
-- **`utils_md`**: Contine un fel de readmeuri de documentatie de informatii utile de care am avut nevoie la un moment dat.
-
-- **`wiki'**: Contine o parte din fisierele de organizare Scrum, prezente si pe wiki-ul proiectului.
 
 ---
 
