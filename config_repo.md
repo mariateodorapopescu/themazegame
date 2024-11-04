@@ -1,6 +1,7 @@
-Configurare Repository
+# Configurare Repository
 
-Acest ghid oferă instrucțiuni pas cu pas pentru configurarea repository-ului local și remote. Urmați acești pași pentru a configura cheile SSH, a genera un token de acces GitLab, a clona repository-ul și a gestiona fluxul de lucru cu Git.
+- Acest ghid oferă instrucțiuni pas cu pas pentru configurarea repository-ului local și remote. 
+- Urmați acești pași pentru a configura cheile SSH, a genera un token de acces GitLab, a clona repository-ul și a gestiona fluxul de lucru cu Git.
 
 ---
 
@@ -107,7 +108,7 @@ Cu mediul virtual activat, instalați dependențele necesare:
 pip install -r requirements.txt # de testat
 ```
 
-> **Notă:** Dacă sunt necesare pachete suplimentare, cum ar fi OpenCV sau biblioteci MPI, le puteți instala astfel:
+> **Notă:** Dacă sunt necesare pachete suplimentare, cum ar fi OpenCV sau numpy (sau altele, ca de ce nu?), le puteți instala astfel:
 >
 > ```
 > pip install opencv-python
