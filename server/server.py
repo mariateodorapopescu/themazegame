@@ -104,8 +104,6 @@ class Server():
 
     
 
-
-            
 def get_fov_as_string(fov : np.array):
     out = np.array_str(fov)
     out = out.replace('[', '')
@@ -149,6 +147,4 @@ server.generate_maze(SIZE, ORIGIN, SEED)
 # DO NOT RUN IT YET !!!!
 # server.launch_viewer()
 server.wait_for_incoming_connections(Constants.ADDR)
-
-
 
