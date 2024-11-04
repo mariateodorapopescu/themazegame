@@ -5,10 +5,6 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from constants import Constants
-import cv2
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from constants import Constants
 
 class MazeCell:
     def __init__(self, x : int, y : int):
@@ -101,33 +97,6 @@ class Maze:
             for j in range(output_y_start_idx, output_y_end_idx):
                     output[i][j] = self.layout[x - field_size + i][y - field_size + j]
         return output
-
-
-    # vreau sa generez un start si un end point in labirint
-    # The minimum rectangular path from the entrance to the exit
-    # must cover at least 50% of the total rectangular area of the maze.
-
-    def generate_start_end_points(self):
-        height = self.height
-        width = self.width
-
-        # Calculăm aria minimă necesară (50% din aria totală)
-        min_area_coverage = 0.5 * height * width
-
-        while True:
-            # Generăm aleator coordonatele pentru start și end
-            start_x, start_y = np.random.randint(0, height), np.random.randint(0, width)
-            end_x, end_y = np.random.randint(0, height), np.random.randint(0, width)
-
-            # Calculăm aria dreptunghiului dintre cele două puncte
-            rect_area = abs(end_x - start_x + 1) * abs(end_y - start_y + 1)
-
-            # Verificăm dacă aria acoperă cel puțin 50% din aria totală a labirintului
-            if rect_area >= min_area_coverage:
-                # Setăm valoarea pentru intrare și ieșire
-                self.matrix[start_x][start_y].value = Constants.ENTRANCE
-                self.matrix[end_x][end_y].value = Constants.EXIT
-                break  # Ieșim din buclă dacă am găsit un start și end corespunzător
     
     def valid_postion(self, x : int, y : int):
         if (x < 0 or x > self.height - 1):
@@ -150,3 +119,7 @@ class Maze:
             if (self.valid_postion(x, y + 1)):
                 return x, y + 1, Constants.SUCCESS        
         return x, y, Constants.FAIL
+
+    
+
+
