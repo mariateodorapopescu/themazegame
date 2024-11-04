@@ -97,36 +97,40 @@ Pentru a rezolva problema, trebuie să aduci modificările recente din `main` de
 
 ---
 
-## 2. Cum fac sa dau push pe un anumit branch numai la anumite **fisiere** de pe un alt anumit branch?
-Pentru a adăuga doar un anumit fisier dintr-un anumit branch în `main` (sau alt branch), avem urmatorii pasi:
-
-1. **Schimbă-te pe branch-ul `main` (sau pe branchul pe care vrei sa aduaugi fisierul):**
-   ```
+## 2.cum fac sa dau push numai la anumite **fisiere** pe un branch anume sau pe main?
+1. **Schimbă-te pe branch-ul `main`:**
+   ```bash
    git checkout main
    ```
 
-2. **Folosește `git checkout` pentru a aduce doar fisierul din branchul pe care este:**
-   ```
-   git checkout branch_pe_care_e_fisierul -- <nume fisier>
-   ```
-
-   Această comandă va copia doar acel fisier din branchul DE PE care vreau sa fac merge în branch-ul `main` (src) (PE care vreau sa fac merge - dst) fără să aducă și alte fișiere sau modificări.
-
-3. **Stagiază modificările pentru acel fisier:**
-   ```
-   git add <nume fisier>
+2. **Folosește `git checkout` pentru a aduce doar `file6` din `mybranch`:**
+   ```bash
+   git checkout mybranch -- file6
    ```
 
-4. **Fă commit pentru acel fisier în branchul CU CARE faci merge:**
-   ```
-   git commit -m "Adaug doar un fisier dintr-un anumit branch"
+   Această comandă va copia doar `file6` din `mybranch` în branch-ul `main` fără să aducă și alte fișiere sau modificări.
+
+3. **Stagiază modificările pentru `file6`:**
+   ```bash
+   git add file6
    ```
 
-Acum, fisierul acela va fi prezent în branch-ul `main` (sau altul) fără să fi adus și alte fișiere sau modificări din branch-ul pe care am lucrat. 
+4. **Fă commit pentru `file6` în `main`:**
+   ```bash
+   git commit -m "Adaug doar file6 din mybranch"
+   ```
 
----
+Acum, `file6` va fi prezent în branch-ul `main` fără să fi adus și alte fișiere sau modificări din `mybranch`. 
+
+Dacă vei vrea mai târziu să integrezi și restul fișierelor din `mybranch`, poți face un merge complet cu comanda:
+
+```bash
+git merge mybranch
+```
 
 ## 3. cum fac sa dau push sau commit doar la anumite **commit-uri** pe branch-ul meu/sau pe main?
+- Mai pe scurt, fiecare lucru pe care vrei sa-l adaugi sau nu, il faci cate un commit. Cu greu se poate face cherry-pick pe commit-uri (for some reason aici nu merge ca pe github), asa ca dupa ce faci acel commit ii dai push. and so on =)))
+- Oricum, aceasta sectiune este in progess, asa ca e posibil sa apara modificari, pe masura ce ma documentez
 - mai intai vezi Issue 1 de mai sus, caci, in mare parte, vei avea o eroare care iti zice ca trebuie sa ai la zi cu main-ul
 - Pentru a face push și merge doar la anumite modificări și nu la toate, poți utiliza diverse metode Git precum **cherry-picking**, **staging selectiv** și **interactive rebase**.
 - Aceste tehnici îți permit să selectezi exact ce modificări să trimiți sau să îmbini în branch-ul de destinație.
@@ -197,7 +201,7 @@ git push origin <start_commit>:<end_commit> branch_name
 
 ---
 
-## 4. Cum fac sa dau push sau commit la tot ce e pe branch-ul meu?
+## 3. variatiune 2: cum fac sa dau push sau commit la tot ce e pe branch-ul meu?
 - mai intai vezi Issue 1 de mai sus, caci, in mare parte, vei avea o eroare care iti zice ca trebuie sa ai la zi cu main-ul
 
 1. **Asigură-te că branch-ul `main` local este la zi cu remote-ul** (ca să te asiguri că nu vei întâmpina conflicte în momentul integrării):
@@ -244,7 +248,7 @@ git push origin <start_commit>:<end_commit> branch_name
 
 ---
 
-## 5. Alte comenzi de baza
+## 4. Alte comenzi de baza
 **1. Setare și inițializare:**
 - Inițializează un director existent ca un repository Git.
    ```
@@ -468,7 +472,7 @@ git push origin <start_commit>:<end_commit> branch_name
 
 ---
 
-## 6. Link-uri utile
+## 5. Link-uri utile
 - [Git Immersion Tutorial](https://gitimmersion.com/)
 - [GitHub Docs - Hello World Guide](https://docs.github.com/en/get-started/start-your-journey/hello-world)
 - [GitHub Support](https://support.github.com/)
