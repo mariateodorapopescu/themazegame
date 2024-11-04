@@ -19,7 +19,6 @@ ORIGIN = (0, 0)
 SEED = 36
 <<<<<<< HEAD
 
-
 def get_fov_as_string(fov : np.array):
     out = np.array_str(fov)
     out = out.replace('[', '')
@@ -70,24 +69,8 @@ def main_communication(my_sock : socket, maze : Maze):
             results = np.zeros(shape=(len(chain_of_commands),))
             fov_list = [maze.get_field_of_view(agent_x, agent_y, view_range)]
 
-            for idx, letter in enumerate(chain_of_commands):
-                if (letter == "N"):
-                    if (agent_x == 0):
-                        break
-                    agent_x = agent_x - 1
-                if (letter == "S"):
-                    if (agent_x == height - 1):
-                        break
-                    agent_x = agent_x + 1
-                if (letter == "W"):
-                    if (agent_y == 0):
-                        break
-                    agent_y = agent_y - 1
-                if (letter == "E"):
-                    if (agent_y == width - 1):
-                        break
-                    agent_y = agent_y + 1
-                results[idx] = Constants.SUCCESS
+            for idx, command in enumerate(chain_of_commands):
+                agent_x, agent_y, results[idx] = maze.adapt_agent_postion(agent_x, agent_y, command)
                 fov_list.append(maze.get_field_of_view(agent_x, agent_y, view_range))
             dictionary = create_reply_back(chain_of_commands, results, fov_list)
             my_sock.send(bytes(dictionary, Constants.ENCODING))

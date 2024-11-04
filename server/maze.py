@@ -1,6 +1,10 @@
 import numpy as np
 import struct
-import cv2 # type: ignore
+import cv2
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from constants import Constants
 
 class MazeCell:
     def __init__(self, x : int, y : int):
@@ -87,6 +91,28 @@ class Maze:
             for j in range(output_y_start_idx, output_y_end_idx):
                     output[i][j] = self.layout[x - field_size + i][y - field_size + j]
         return output
+    
+    def valid_postion(self, x : int, y : int):
+        if (x < 0 or x > self.height - 1):
+            return False
+        if (y < 0 or y > self.width - 1):
+            return False
+        return self.layout[x][y] != Constants.WALL
+    
+    def adapt_agent_postion(self, x : int , y : int, command : str):
+        if (command == "N"):
+            if (self.valid_postion(x - 1, y)):
+                return x - 1, y, Constants.SUCCESS
+        if (command == "S"):
+            if (self.valid_postion(x + 1, y)):
+                return  x + 1, y, Constants.SUCCESS
+        if (command == "W"):
+            if (self.valid_postion(x, y - 1)):
+                return x, y - 1, Constants.SUCCESS
+        if (command == "E"):
+            if (self.valid_postion(x, y + 1)):
+                return x, y + 1, Constants.SUCCESS        
+        return x, y, Constants.FAIL
 
     
 
