@@ -100,10 +100,6 @@ class Server():
                 return False
             print(output)
 
-    
-
-    
-
 def get_fov_as_string(fov : np.array):
     out = np.array_str(fov)
     out = out.replace('[', '')
