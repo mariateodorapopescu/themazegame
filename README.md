@@ -256,5 +256,5 @@ sau
 > Intrebare 3
 - Agentul are voie sa memoreze zonele prin care a trecut, reconstruind astfel labirintul?
 - Avem voie sa trimitem agentului dimensiunea totala a labirintului, pt alocari de memorie?
-* Raspuns:* 1. Da, poti sa memorezi pe unde ai fost, tocmai sa fie mai "rapid" daca este cazul.
+*Raspuns:* 1. Da, poti sa memorezi pe unde ai fost, tocmai sa fie mai "rapid" daca este cazul.
 2. to be to
