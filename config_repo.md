@@ -107,7 +107,7 @@ Cu mediul virtual activat, instalați dependențele necesare:
 pip install -r requirements.txt # de testat
 ```
 
-> **Notă:** Dacă sunt necesare pachete suplimentare, cum ar fi OpenCV sau alte biblioteci, le puteți instala astfel:
+> **Notă:** Dacă sunt necesare pachete suplimentare, cum ar fi OpenCV sau biblioteci MPI, le puteți instala astfel:
 >
 > ```
 > pip install opencv-python
