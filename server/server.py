@@ -57,6 +57,7 @@ def main_communication(my_sock : socket, maze : Maze):
     height, width = maze.layout.shape
     view_range = Constants.INITIAL_VIEW_RANGE
     fov = maze.get_field_of_view(agent_x, agent_y, view_range)
+    print(fov)
     #need to convert to bytes so i can send it to socket
     my_sock.send(bytes(get_fov_as_string(fov), encoding=Constants.ENCODING)) 
 
@@ -81,8 +82,6 @@ def main_communication(my_sock : socket, maze : Maze):
             print("Socket was closed by client server still up")
             return False
         print(output)
-        # getch.getch()
-    return True
 
 
 # MAZE GENERATION
@@ -92,19 +91,19 @@ maze = Maze(SIZE[0], SIZE[1], SEED)
 generator : DFSGenerator = DFSGenerator(maze, SIZE, ORIGIN)
 #generator : DFSGenerator = DFSGenerator(SIZE, SEED, ORIGIN) 
 maze = generator.carve_maze()
-maze.generate_start_end_points()
+# maze.generate_start_end_points()
 maze.write_maze_to_file("../maze.png")
 #maze.save_layout_maze()
-maze.write_to_output()
+# maze.write_to_output()
 print()
 
 # AGENTS
 #agent = AStarAgent(view_range=5)
 
 # VIEWER
-viewer = Viewer(maze)
+# viewer = Viewer(maze)
 #viewer = Viewer(maze, "../maze.png")
-viewer.run()
+# viewer.run()
 
 # server is waiting for connections
 s = socket.create_server(Constants.ADDR, family=socket.AF_INET, reuse_port=True)
