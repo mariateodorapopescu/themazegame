@@ -150,7 +150,3 @@ class Maze:
             if (self.valid_postion(x, y + 1)):
                 return x, y + 1, Constants.SUCCESS        
         return x, y, Constants.FAIL
-
-    
-
-
