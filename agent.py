@@ -17,7 +17,8 @@ class AgentRandom:
         self.x = int(Constants.INITIAL_ESTIMATED_SIZE / 2) + 1
         self.y = int(Constants.INITIAL_ESTIMATED_SIZE / 2) + 1
 
-    def create_initial_map(self, fov : np.array):
+    def create_initial_map(self, fov : bytes):
+        fov : np.array = self.interpret_fov(fov)
         height, width = fov.shape
         self.local_map = np.zeros(shape=(Constants.INITIAL_ESTIMATED_SIZE,
                              Constants.INITIAL_ESTIMATED_SIZE))
@@ -74,12 +75,12 @@ class AgentRandom:
     def _adapt_map_in_north(self, fov : np.array):
         height, width = fov.shape
         for i in range(width):
-            self.local_map[self.x - int(width / 2) - 1][self.y - int(width / 2) + i] = fov[0][i]
+            self.local_map[self.x - int(height / 2) - 1][self.y - int(width / 2) + i] = fov[0][i]
     
     def _adapt_map_in_south(self, fov : np.array):
         height, width = fov.shape
         for i in range(width):
-            self.local_map[self.x + int(width / 2) + 1][self.y - int(width / 2) + i] = fov[height - 1][i]
+            self.local_map[self.x + int(height / 2) + 1][self.y - int(width / 2) + i] = fov[height - 1][i]
     
     def _adapt_map_in_west(self, fov : np.array):
         height, width = fov.shape
