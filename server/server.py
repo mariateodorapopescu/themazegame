@@ -2,17 +2,17 @@ import numpy as np
 import socket
 from CustomThread import CustomThread
 from DFSGenerator import DFSGenerator
-from agent_astar import AStarAgent
+from viewer import Viewer
+from maze import Maze
 
 import sys
 import os
 import json
 import getch
 
-sys.path.append(os.path.abspath('../'))
+sys.path.append(os.path.abspath('../client'))
+from client.agent_astar import AStarAgent
 from constants import Constants
-from maze import Maze
-from viewer import Viewer
 
 
 TIMEOUT_REQUEST = 1.0
@@ -93,7 +93,7 @@ generator : DFSGenerator = DFSGenerator(maze, SIZE, ORIGIN)
 maze = generator.carve_maze()
 # maze.generate_start_end_points()
 maze.write_maze_to_file("../maze.png")
-#maze.save_layout_maze()
+maze.save_layout_maze()
 # maze.write_to_output()
 print()
 
