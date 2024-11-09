@@ -90,7 +90,7 @@ class Server():
 
                 dictionary = create_reply_back(chain_of_commands, results, fov_list)
                 my_sock.send(bytes(dictionary, Constants.ENCODING))
-                # getch.getch()
+
             except socket.timeout as err:
                 return False
             if output == b'':
@@ -139,4 +139,3 @@ server.generate_maze(SIZE, ORIGIN, SEED)
 # DO NOT RUN IT YET !!!!
 # server.launch_viewer()
 server.wait_for_incoming_connections(Constants.ADDR)
-
