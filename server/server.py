@@ -27,15 +27,13 @@ class Server():
 
     def generate_maze(self, size : tuple[int, int], origin : tuple[int, int], seed : int):
         if (self.maze == None):
-            maze = Maze(size[0], size[1], seed)
-            generator : DFSGenerator = DFSGenerator(maze, size, origin)
-            maze = generator.carve_maze()
-            maze.save_layout_maze()
-            maze.write_maze_to_file(self.path_to_write)
+            generator : DFSGenerator = DFSGenerator(size, seed, origin)
+            self.maze = generator.carve_maze()
+            self.maze.save_layout_maze()
+            self.maze.write_maze_to_file(self.path_to_write)
             self.origin = origin
             self.size = size
             self.seed = seed
-            self.maze = maze
         else:
             print("Maze is already generated in this server.")
         
@@ -92,7 +90,7 @@ class Server():
 
                 dictionary = create_reply_back(chain_of_commands, results, fov_list)
                 my_sock.send(bytes(dictionary, Constants.ENCODING))
-
+                # getch.getch()
             except socket.timeout as err:
                 return False
             if output == b'':
