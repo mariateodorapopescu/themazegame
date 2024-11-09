@@ -6,6 +6,7 @@ from agent_dfs import DFSAgent
 import json
 import sys
 import os
+import numpy as np
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from constants import Constants
@@ -33,6 +34,7 @@ class Client():
                     print("Conexiunea cu serverul a fost închisă.")
                     break
                 self.agent.interpret_response(json.loads(response))
+                np.savetxt("out.txt", self.agent.local_map > 0, fmt='%d') 
             except Exception as e:
                 print(f"Eroare la primirea datelor: {e}")
                 self.sock.close()
