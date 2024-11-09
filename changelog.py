@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from datetime import date
 from os.path import exists
 today=date.today()
